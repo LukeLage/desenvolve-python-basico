@@ -1,0 +1,9 @@
+1. Inicio;
+
+2. Leia n;
+3. x = n-1;
+4. y = 10-1;
+5. z = (x * 10) + y;
+6 Imprima z;
+
+7. Fim;
