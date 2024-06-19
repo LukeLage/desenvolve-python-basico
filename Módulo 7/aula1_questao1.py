@@ -3,6 +3,8 @@
 nome = input('Digite seu nome: \n')
 contador = ''
 
+# Função que irá criar a escada do nome
+
 for letra in nome:
     contador += letra
     print(contador)
