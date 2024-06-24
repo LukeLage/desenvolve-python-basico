@@ -1,58 +1,56 @@
-# Escreva um script em Python que solicita do usuário uma quantidade indefinida de números inteiros (pelo menos 4 valores), os armazena em uma lista e, usando fatiamento de listas, imprima:
-# A lista original
-# Os 3 primeiros elementos
-# Os 2 últimos elementos
-# A lista invertida (do fim para o começo)
-# Os elementos de índice par (0, 2, 4 … )
-# Os elementos de índice ímpar (1, 3, 5,)
+# Crie uma lista com 20 elementos, entre -10 e 10, gerados aleatoriamente. Em seguida encontre o intervalo que possui a maior quantidade de números negativos e delete ele da lista com o operador del.
+# Você deve imprimir a lista antes e depois da deleção.
 
-lista = []
+# Original: [9, 2, -1, 4, -2, -3, 5, 6, -7, -4, -1, 6, 8, -3, -6]
+#'Editada:  [9, 2, -1, 4, -2, -3, 5, 6, 6, 8, -3, -6]
 
-# Função que irá juntar os números na lista
+import random #Biblioteca que permitirá randomização
 
-for i in range (5):
-    num = int((input('Digite um número para ser adicionado na lista: \n')))
-    lista.append(num)
+import random
 
-# Função que irá separar os números pares e os números ímpares
 
-pares = []
-impares = []
+def encontrar_e_remover_intervalo_negativo(numeros):
 
-for i in lista: 
-    if i % 2: 
-        impares.append(i)
-    else:
-        pares.append(i)
+    # Inicializar variáveis
+    inicio_intervalo_negativo = None
+    fim_intervalo_negativo = None
+    contagem_negativos_atual = 0
+    contagem_negativos_maxima = 0
 
-# Impressões conforme pedido em atividade
+    # Percorrer a lista
+    for i, numero in enumerate(numeros):
+        # Verificar se o número é negativo
+        if numero < 0:
+            # Se for o primeiro número negativo
+            if inicio_intervalo_negativo is None:
+                inicio_intervalo_negativo = i
+            # Atualizar a contagem de negativos
+            contagem_negativos_atual += 1
+        # Verificar se o número é positivo ou o fim da lista
+        else:
+            # Se for o fim de um intervalo negativo
+            if inicio_intervalo_negativo is not None:
+                # Atualizar a contagem máxima de negativos
+                if contagem_negativos_atual > contagem_negativos_maxima:
+                    contagem_negativos_maxima = contagem_negativos_atual
+                    fim_intervalo_negativo = i - 1
+                # Reiniciar a contagem de negativos
+                contagem_negativos_atual = 0
+                inicio_intervalo_negativo = None
 
-print(
-    'Lista original: \n', 
-    lista
-)
+    # Remover o intervalo negativo, se encontrado
+    if fim_intervalo_negativo is not None:
+        del numeros[inicio_intervalo_negativo : fim_intervalo_negativo + 1]
 
-print(
-    'Os três primeiros elementos: \n',
-    lista[:3]
-)
 
-print(
-    'Os dois últimos elementos: \n',
-    lista[3:]
-)
+# Gerar lista aleatória
+numeros = [random.randint(-10, 10) for _ in range(20)]
 
-print(
-    'A lista invertida: \n', 
-    lista [::-1]
-)
+# Imprimir lista original
+print(f"Lista original: {numeros}")
 
-print(
-    'Os números pares: \n',
-    pares
-)
+# Encontrar e remover intervalo negativo
+encontrar_e_remover_intervalo_negativo(numeros)
 
-print(
-    'Os números ímpares: \n',
-    impares
-)
+# Imprimir lista editada
+print(f"Lista editada: {numeros}")
