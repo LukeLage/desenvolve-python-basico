@@ -1,14 +1,58 @@
-#Crie uma lista com 20 elementos, entre -10 e 10, gerados aleatoriamente. Em seguida encontre o intervalo que possui a maior quantidade de números negativos e delete ele da lista com o operador del. 
-#Você deve imprimir a lista antes e depois da deleção.
+# Escreva um script em Python que solicita do usuário uma quantidade indefinida de números inteiros (pelo menos 4 valores), os armazena em uma lista e, usando fatiamento de listas, imprima:
+# A lista original
+# Os 3 primeiros elementos
+# Os 2 últimos elementos
+# A lista invertida (do fim para o começo)
+# Os elementos de índice par (0, 2, 4 … )
+# Os elementos de índice ímpar (1, 3, 5,)
 
-#Original: [9, 2, -1, 4, -2, -3, 5, 6, -7, -4, -1, 6, 8, -3, -6]
-#'Editada:  [9, 2, -1, 4, -2, -3, 5, 6, 6, 8, -3, -6]
+lista = []
 
-import random #Biblioteca que permitirá randomização
+# Função que irá juntar os números na lista
 
-lista = [random.randint (-10, 10)]
+for i in range (5):
+    num = int((input('Digite um número para ser adicionado na lista: \n')))
+    lista.append(num)
+
+# Função que irá separar os números pares e os números ímpares
+
+pares = []
+impares = []
+
+for i in lista: 
+    if i % 2: 
+        impares.append(i)
+    else:
+        pares.append(i)
+
+# Impressões conforme pedido em atividade
 
 print(
-    'Lista original: \n',
+    'Lista original: \n', 
     lista
+)
+
+print(
+    'Os três primeiros elementos: \n',
+    lista[:3]
+)
+
+print(
+    'Os dois últimos elementos: \n',
+    lista[3:]
+)
+
+print(
+    'A lista invertida: \n', 
+    lista [::-1]
+)
+
+print(
+    'Os números pares: \n',
+    pares
+)
+
+print(
+    'Os números ímpares: \n',
+    impares
 )
